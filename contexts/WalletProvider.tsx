@@ -1,8 +1,9 @@
 import type {FC, ReactNode} from 'react';
-import React, {useMemo, useState} from 'react';
-import {coinbaseWallet, metaMaskWallet, selectWallet, Wallet, walletConnectWallet} from "../connection/wallet";
+import React, {useMemo} from 'react';
+import {coinbaseWallet, selectWallet, Wallet, WalletReadyState, WalletType} from "../connection/wallet";
 import {
-    coinbase, coinbaseHooks,
+    coinbase,
+    coinbaseHooks,
     Connectors,
     metaMask,
     metaMaskHooks,
@@ -24,9 +25,24 @@ export const WalletProvider: FC<WalletProps> = ({children, ...props}) => {
     const wallets: Wallet[] = useMemo(() => {
         let w = []
 
-        if (isMetaMask) w.push(metaMaskWallet)
-        w.push(coinbaseWallet)
-        w.push(walletConnectWallet)
+        w.push({
+            connector: metaMask,
+            readyState: isMetaMask? WalletReadyState.Installed: WalletReadyState.NotDetected,
+            name: WalletType.METAMASK,
+            icon: "/metamask.ico"
+        })
+        w.push({
+            connector: coinbase,
+            readyState: WalletReadyState.Installed,
+            name: WalletType.COINBASE_WALLET,
+            icon: "/coinbase.svg"
+        })
+        w.push({
+            connector: walletConnect,
+            readyState: WalletReadyState.Installed,
+            name: WalletType.WALLET_CONNECT,
+            icon: "/walletconnect.svg"
+        })
         return w
     }, []);
 
