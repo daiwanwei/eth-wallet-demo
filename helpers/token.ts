@@ -2,6 +2,7 @@ import {Alchemy} from "alchemy-sdk";
 
 export interface TokenInfo {
     contractAddress: string
+    tokenId:string
     name: string
     symbol: string
     image: string
@@ -16,13 +17,14 @@ export async function getHeldTokens(
         {contractAddresses:whitelistContracts}
     )
     const {ownedNfts} =results
-    const data=ownedNfts.map(({contract,rawMetadata,balance})=>{
+    const data=ownedNfts.map(({contract,tokenId,rawMetadata,balance})=>{
         const {address,name,symbol }=contract
         return {
             contractAddress:address,
             name:name || "",
             symbol:symbol || "",
             image:rawMetadata?.image || "",
+            tokenId,
             amount:balance
         }
     })
