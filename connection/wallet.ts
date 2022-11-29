@@ -1,8 +1,9 @@
-import {coinbase, metaMask, walletConnect} from "./connector";
+import {coinbase, coinbaseHooks, metaMask, metaMaskHooks, walletConnect, walletConnectHooks} from "./connector";
 import {MetaMask} from "@web3-react/metamask";
 import {WalletConnect} from "@web3-react/walletconnect";
 import {Connector} from "@web3-react/types";
 import {CoinbaseWallet} from "@web3-react/coinbase-wallet";
+import {Web3ReactHooks} from "@web3-react/core/dist/hooks";
 
 
 export enum WalletType {
@@ -33,6 +34,7 @@ export enum WalletReadyState {
 
 export interface Wallet {
     connector: MetaMask | WalletConnect | CoinbaseWallet;
+    hooks: Web3ReactHooks
     readyState: WalletReadyState;
     name: string
     icon: string
@@ -40,6 +42,7 @@ export interface Wallet {
 
 export const metaMaskWallet: Wallet = {
     connector: metaMask,
+    hooks: metaMaskHooks,
     readyState: WalletReadyState.Installed,
     name: WalletType.METAMASK,
     icon: "/metamask.ico"
@@ -47,6 +50,7 @@ export const metaMaskWallet: Wallet = {
 
 export const walletConnectWallet: Wallet = {
     connector: walletConnect,
+    hooks: walletConnectHooks,
     readyState: WalletReadyState.Installed,
     name: WalletType.WALLET_CONNECT,
     icon: "/walletconnect.svg"
@@ -54,6 +58,7 @@ export const walletConnectWallet: Wallet = {
 
 export const coinbaseWallet: Wallet = {
     connector: coinbase,
+    hooks: coinbaseHooks,
     readyState: WalletReadyState.Installed,
     name: WalletType.COINBASE_WALLET,
     icon: "/coinbase.svg"

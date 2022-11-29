@@ -14,7 +14,7 @@ export const ContextProvider: FC<ContextProviderProps> = ({children}) => {
     return (
         <WalletProvider>
             <WalletModalProvider>
-                <AlchemyClientProvider apiKey={"-RuO-O9hUDVIRFCIyPh-6mJcbeD13qZ4"}>
+                <AlchemyClientProvider apiKey={"zuvdOHfSEicz2Y6xtiXVbAA9AejGNPy2"}>
                     <CollectionListProvider>
                         <CollectionHolderProvider>
                             {children}

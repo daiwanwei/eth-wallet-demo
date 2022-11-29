@@ -1,6 +1,6 @@
 import type {FC, ReactNode} from 'react';
 import React, {useMemo} from 'react';
-import {coinbaseWallet, selectWallet, Wallet, WalletReadyState, WalletType} from "../connection/wallet";
+import {selectWallet, Wallet, WalletReadyState, WalletType} from "../connection/wallet";
 import {
     coinbase,
     coinbaseHooks,
@@ -27,18 +27,22 @@ export const WalletProvider: FC<WalletProps> = ({children, ...props}) => {
 
         w.push({
             connector: metaMask,
-            readyState: isMetaMask? WalletReadyState.Installed: WalletReadyState.NotDetected,
+            hooks:metaMaskHooks,
+            readyState: isMetaMask?
+                WalletReadyState.Installed: WalletReadyState.NotDetected,
             name: WalletType.METAMASK,
             icon: "/metamask.ico"
         })
         w.push({
             connector: coinbase,
+            hooks:coinbaseHooks,
             readyState: WalletReadyState.Installed,
             name: WalletType.COINBASE_WALLET,
             icon: "/coinbase.svg"
         })
         w.push({
             connector: walletConnect,
+            hooks:walletConnectHooks,
             readyState: WalletReadyState.Installed,
             name: WalletType.WALLET_CONNECT,
             icon: "/walletconnect.svg"
@@ -50,13 +54,14 @@ export const WalletProvider: FC<WalletProps> = ({children, ...props}) => {
     const connectors:Connectors = useMemo(
         () => {
             let cons = []
-            cons.push([walletConnect, walletConnectHooks])
-            // if (getIsMetaMask()) cons.push([metaMask, metaMaskHooks])
-            cons.push([coinbase, coinbaseHooks])
+            wallets.forEach(({connector,hooks,readyState})=>{
+                if (readyState===WalletReadyState.Installed){
+                    cons.push([connector,hooks])
+                }
+            })
             cons.push([network, networkHooks])
-            if (getIsMetaMask()) cons.push([metaMask, metaMaskHooks])
             return cons
-        }, []);
+        }, [wallets]);
 
     return (
         <WalletContext.Provider
