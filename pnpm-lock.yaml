@@ -19,7 +19,6 @@ specifiers:
   '@web3-react/types': 8.0.20-beta.0
   '@web3-react/url': 8.0.25-beta.0
   '@web3-react/walletconnect': 8.0.35-beta.0
-  add: ^2.0.6
   alchemy-sdk: ^2.2.3
   eslint: 8.28.0
   eslint-config-next: 13.0.5
@@ -45,7 +44,6 @@ dependencies:
   '@web3-react/types': 8.0.20-beta.0_react@18.2.0
   '@web3-react/url': 8.0.25-beta.0_react@18.2.0
   '@web3-react/walletconnect': 8.0.35-beta.0_a6am7bqntqsrf64p35rtri2khq
-  add: 2.0.6
   alchemy-sdk: 2.2.3
   ethers: 5.7.2
   next: 13.0.5_biqbaboplfbrettd7655fr4n2y
@@ -1262,10 +1260,6 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
     dev: true
-
-  /add/2.0.6:
-    resolution: {integrity: sha512-j5QzrmsokwWWp6kUcJQySpbG+xfOBqqKnup3OIk1pz+kB/80SLorZ9V8zHFLO92Lcd+hbvq8bT+zOGoPkmBV0Q==}
-    dev: false
 
   /aes-js/3.0.0:
     resolution: {integrity: sha512-H7wUZRn8WpTq9jocdxQ2c8x2sKo9ZVmzfRE13GiNJXfp7NcKYEdvl3vspKjXox6RIG2VtaRe4JFvxG4rqp2Zuw==}
