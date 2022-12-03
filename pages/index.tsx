@@ -17,7 +17,7 @@ const Home: NextPage = () => {
 
         <main className={styles.main}>
           <h1 className={styles.title}>
-            Ethereum cloneX Collection
+              Ethereum collabrated Collection
           </h1>
           <CollectionHolderButton>connect your wallet to see if you are a holder of collabrated collections</CollectionHolderButton>
           <CollectionHolderProfile/>
